@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coin Flip</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #222;
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+
+  .coin {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ffd700, #ffcc00);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+    cursor: pointer;
+    transition: transform 2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+
+  .coin.flipping {
+    transform: rotateY(1080deg); /* 3 full spins */
+  }
+
+  button {
+    margin-top: 30px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    background: #ff4b2b;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background: #ff416c;
+  }
+</style>
+</head>
+<body>
+
+<div class="coin" id="coin">Heads</div>
+<button id="flipBtn">Flip Coin</button>
+
+<script>
+  const coin = document.getElementById('coin');
+  const button = document.getElementById('flipBtn');
+
+  function flipCoin() {
+    coin.classList.add('flipping');
+    
+    // Pick random result
+    const result = Math.random() < 0.5 ? 'Heads' : 'Tails';
+
+    // Wait for the animation to finish (2s)
+    setTimeout(() => {
+      coin.textContent = result;
+      coin.classList.remove('flipping');
+    }, 2000);
+  }
+
+  button.addEventListener('click', flipCoin);
+</script>
+
+</body>
+</html>
